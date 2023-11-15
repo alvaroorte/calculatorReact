@@ -15,27 +15,21 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  function generateOperation ( text ) {
-    console.log(text);
-  }
 
 
-
-  const [input, setInput] = useState('');
-  const [result, setResult] = useState('');
+  const [input, setInput] = useState('2^6');
+  const [result, setResult] = useState('0');
 
   const handleClick = (value) => {
     setInput(input + value);
   };
 
-  const handleReset = () => {
+  const resetOperation = () => {
     setInput('');
-    setResult('');
+    setResult('0');
   };
 
-  const handleCalculate = () => {
+  const operationCalculate = () => {
     try {
       setResult(eval(input).toString());
     } catch (error) {
@@ -44,85 +38,35 @@ function App() {
   };
   return (
     <>
-      <Box sx={{ flexGrow: 1 }}>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <Item> { count } </Item>
-          </Grid>
-          <Grid item xs={8}>
-            <Item>CE</Item>
-          </Grid>
-          <Grid item xs={4}>
-            <Item>C</Item>
-          </Grid>
-          <Grid item xs={4} >
-            <Item>
-              <Button onClick={generateOperation(1)}>1</Button>
-            </Item>
-          </Grid>
-          <Grid item xs={4}>
-            <Item>2</Item>
-          </Grid>
-          <Grid item xs={4}>
-            <Item>3</Item>
-          </Grid>
-          <Grid item xs={4}>
-            <Item>4</Item>
-          </Grid>
-          <Grid item xs={4}>
-            <Item>5</Item>
-          </Grid>
-          <Grid item xs={4}>
-            <Item>6</Item>
-          </Grid>
-          <Grid item xs={4}>
-            <Item>7</Item>
-          </Grid>
-          <Grid item xs={4}>
-            <Item>8</Item>
-          </Grid>
-          <Grid item xs={4}>
-            <Item>9</Item>
-          </Grid>
-          <Grid item xs={4}>
-            <Item>0</Item>
-          </Grid>
-          <Grid item xs={8}>
-            <Item>=</Item>
-          </Grid>
-        </Grid>
-      </Box>
+        <div className="App">
+            <div className="calculator">
+                <div className="display">
+                    <div className="result">{result}</div>
+                    <div className="input">{input}</div>
+                </div>
+                <div className="buttons">
+                    <button variant="outlined" className='button' onClick={() => handleClick('7')}>7</button>
+                    <button variant="outlined" className='button' onClick={() => handleClick('8')}>8</button>
+                    <button variant="outlined" className='button' onClick={() => handleClick('9')}>9</button>
+                    <button variant="outlined" className='button' onClick={() => handleClick('/')}>/</button>
 
+                    <button variant="outlined" className='button' onClick={() => handleClick('4')}>4</button>
+                    <button variant="outlined" className='button' onClick={() => handleClick('5')}>5</button>
+                    <button variant="outlined" className='button' onClick={() => handleClick('6')}>6</button>
+                    <button variant="outlined" className='button' onClick={() => handleClick('*')}>*</button>
 
-      <div className="App">
-      <div className="calculator">
-        <div className="display">
-          <div className="input">{input}</div>
-          <div className="result">{result}</div>
+                    <button variant="outlined" className='button' onClick={() => handleClick('1')}>1</button>
+                    <button variant="outlined" className='button' onClick={() => handleClick('2')}>2</button>
+                    <button variant="outlined" className='button' onClick={() => handleClick('3')}>3</button>
+                    <button variant="outlined" className='button' onClick={() => handleClick('-')}>-</button>
+
+                    <button variant="outlined" className='button' onClick={() => handleClick('0')}>0</button>
+                    <button variant="outlined" className='button' onClick={resetOperation}>C</button>
+                    <button variant="outlined" className='button' onClick={operationCalculate}>=</button>
+                    <button variant="outlined" className='button' onClick={() => handleClick('+')}>+</button>
+                </div>
+            </div>
         </div>
-        <div className="buttons">
-          <button onClick={() => handleClick('7')}>7</button>
-          <button onClick={() => handleClick('8')}>8</button>
-          <button onClick={() => handleClick('9')}>9</button>
-          <button onClick={() => handleClick('/')}>/</button>
-
-          <button onClick={() => handleClick('4')}>4</button>
-          <button onClick={() => handleClick('5')}>5</button>
-          <button onClick={() => handleClick('6')}>6</button>
-          <button onClick={() => handleClick('*')}>*</button>
-
-          <button onClick={() => handleClick('1')}>1</button>
-          <button onClick={() => handleClick('2')}>2</button>
-          <button onClick={() => handleClick('3')}>3</button>
-          <button onClick={() => handleClick('-')}>-</button>
-
-          <button onClick={() => handleClick('0')}>0</button>
-          <button onClick={handleReset}>C</button>
-          <button onClick={handleCalculate}>=</button>
-          <button onClick={() => handleClick('+')}>+</button>
-        </div>
-      </div>
-    </div>
     </>
   );
 }
